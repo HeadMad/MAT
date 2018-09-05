@@ -1,2 +1,5 @@
 .idea/
 app/composer/vendor/
+node_modules/
+trash/
+assets/

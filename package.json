@@ -1,0 +1,20 @@
+{
+  "name": "mat",
+  "version": "1.0.0",
+  "description": "Simple cms framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gulp": "./node_modules/.bin/gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HeadMad/MAT.git"
+  },
+  "author": "HeadMad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HeadMad/MAT/issues"
+  },
+  "homepage": "https://github.com/HeadMad/MAT#readme"
+}
