@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteBase /
+
+# Проверяем, существует ли такой файл в папке public
+RewriteCond %{DOCUMENT_ROOT}/public/$0 -f
+RewriteRule .+ public/$0 [L]
+
+AddDefaultCharset UTF-8
+
+RewriteRule .* app/index.php [L,QSA]
