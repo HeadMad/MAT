@@ -6,7 +6,7 @@ const gulp     = require('gulp');
 function requireTask (taskName, path, options)
 {
 	options.taskName = taskName;
-	gulp.task(taskName, function(callback){
+	gulp.task(taskName, function( callback ){
 		let task = require(path)
 		.call(this, options);
 		return task(callback);
@@ -14,7 +14,7 @@ function requireTask (taskName, path, options)
 }
 
 requireTask('styles', './tasks/styles', {
-	src: ['./assets/css/*.css'],
+	src: ['./frontend/css/*.css'],
 	file: 'styles.css',
 	dest: './public/css'
 });
