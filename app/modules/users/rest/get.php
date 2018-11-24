@@ -3,17 +3,21 @@
      * Возвращает записи в блоге конкретного пользователя
      * или отдельную запись этого пользователя
      */
-    return function ($id, $blog_id = null, $params = null) {
+    return function ($id, $where) {
         
         $default_params = array (
             'page' => 1,
             'limit' => 10,
             'id' => $id,
-            'blog' => $blog_id
+            'cond' => $where,
         );
 
 
-        return $default_params;
+        $result = [];
+        $result['ok'] = true;
+        $result['response'] = $default_params;
+
+        return $result;
 
 
         // try {

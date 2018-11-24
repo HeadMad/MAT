@@ -4,9 +4,16 @@
  * Основной роутинг
  * @param  string $uri uri-адрес
  */
-function route ($uri)
+function route ($uri = null)
 {
-	list($module, $action, $target) = explode('/', $uri, 3) + array('index', 'index', null);
+	// если запрос пуст
+	if (empty($uri)) {
+		$target = null;
+		require './modules/index/actions/index.php';
+		exit;
+	}
+
+	list($module, $action, $target) = explode('/', $uri, 3) + ['index', 'index', null];
 
 	$action_file = './modules/' . $module . '/actions/' . $action . '.php';
 
