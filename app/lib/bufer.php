@@ -9,7 +9,7 @@
 function bufer ($path, $vars = null)
 {
 	$path = explode('/', $path, 2);
-	$tpl = 'modules/' . $path[0] . '/tpl/' . $path[1] . '.tpl';
+	$tpl = './modules/' . $path[0] . '/tpl/' . $path[1] . '.tpl';
 
 	if (!is_file($tpl))
 		return null;
@@ -22,4 +22,4 @@ function bufer ($path, $vars = null)
 
 	return ob_get_clean();
 
-// } // end bufer
+} // end bufer
