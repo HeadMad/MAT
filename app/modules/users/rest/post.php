@@ -3,7 +3,7 @@
      * Возвращает список пользователей
      * или данные конкретного пользователя
      */
-    return function ($id = null) {
+    return function ($id = null, $where = null) {
         
         $default_params = array (
             'page' => 1,
@@ -12,22 +12,42 @@
 
         $default_params['id'] = $id;
 
-        $result = [];
-        $result['ok'] = true;
-        $result['response'] = $default_params;
-
-        return $result;
+        
 
         try {
-            $dbcon = new PDO('mysql:host=localhost;dbname=' . config('dbName'), config('dbUser'), config('dbPassword'));
+            $dbcon = new PDO('mysql:host=' . config('dbHost') . ';dbname=' . config('dbName'), config('dbUser'), config('dbPassword'));
             $dbcon->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            //получаем данные
-            $data = $dbcon->query('SELECT * FROM blog WHERE id = ' . $id . ' OR alias = ' . $id);
+            $query = 'SELECT * FROM users';
 
-            return $data;
+            if (!is_null($id)) {
+                $query .= ' WHERE (id = ' . $id . ' OR alias = ' . $id . ')';
+            }
+
+            if (!is_null($where)) {
+                $where_array = [];
+                foreach ($where as $key => $val) {
+                    $where_array[] = $key . ' = ' . $val;
+                }
+                $query .= $id ? ' AND ' : ' WHERE ';
+                $query .= implode(' AND ', $where_array);
+            }
+
+            //получаем данные
+            $data = $dbcon->query($query);
+
+            return [
+                'ok' => true,
+                'response' => $data,
+            ];
 
         } catch(PDOException $e) {
-            echo 'Ошибка: ' . $e->getMessage();
+
+            return [
+                'ok' => false,
+                'error_code' => 400,
+                'description' => $e->getMessage();
+            ];
         }
+
     };
