@@ -7,7 +7,9 @@ require './lib/config.php';
 
 // определяем тип роутера
 $route = (strpos($_SERVER['HTTP_HOST'], 'api.') !== 0) ? 'www' : 'api';
-require './lib/' . $route . '.route.php';
+
+require './lib/error.' . $route . '.php';
+require './lib/route.' . $route . '.php';
 
 // Получаем URI-адрес
 $uri = $_SERVER['REQUEST_URI'];

@@ -1,17 +1,8 @@
 <?php
     /**
-     * Возвращает список пользователей
-     * или данные конкретного пользователя
+     * Добавляет пользователя
      */
-    return function ($id = null, $where = null) {
-        
-        $default_params = array (
-            'page' => 1,
-            'limit' => 10,
-        );
-
-        $default_params['id'] = $id;
-
+    return function ($params = null) {
         
 
         try {
@@ -24,14 +15,7 @@
                 $query .= ' WHERE (id = ' . $id . ' OR alias = ' . $id . ')';
             }
 
-            if (!is_null($where)) {
-                $where_array = [];
-                foreach ($where as $key => $val) {
-                    $where_array[] = $key . ' = ' . $val;
-                }
-                $query .= $id ? ' AND ' : ' WHERE ';
-                $query .= implode(' AND ', $where_array);
-            }
+            
 
             //получаем данные
             $data = $dbcon->query($query);
