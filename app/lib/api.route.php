@@ -2,7 +2,7 @@
 
 /**
  * Основной роутинг
- * @param  string $path uri адрес
+ * @param  string $uri uri-адрес
  */
 function route ($uri)
 {
@@ -10,11 +10,12 @@ function route ($uri)
 
 	$action_file = './modules/' . $module . '/actions/' . $action . '.php';
 
-	if (!is_file($action_file))
-		require './modules/index/actions/404.php';
-
-	else
+	if (is_file($action_file)) {
 		require $action_file;
+
+	} else {
+		require './modules/index/actions/404.php';
+	}
 
 	exit;
 

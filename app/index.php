@@ -3,7 +3,11 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require './lib/route.php';
+print_r ($GLOBALS);
+
+// определяем тип роутера
+$route = (strpos($_SERVER['HTTP_HOST'], 'api.') !== 0) ? 'www' : 'api';
+require './lib/' . $route . '.route.php';
 
 // Получаем URI-адрес
 $uri = $_SERVER['REQUEST_URI'];

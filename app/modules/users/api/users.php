@@ -10,16 +10,20 @@
             'limit' => 10,
         );
 
-        try {
-            $dbcon = new PDO('mysql:host=localhost;dbname=dbName', $dbUsername, $dbPassword);
-            $dbcon->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $default_params['id'] = $id;
 
-            //получаем данные
-            $data = $dbcon->query('SELECT * FROM blog WHERE id = ' . $id . ' OR alias = ' . $id);
+        return $default_params;
 
-            return $data;
+        // try {
+        //     $dbcon = new PDO('mysql:host=localhost;dbname=dbName', $dbUsername, $dbPassword);
+        //     $dbcon->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        } catch(PDOException $e) {
-            echo 'Ошибка: ' . $e->getMessage();
-        }
+        //     //получаем данные
+        //     $data = $dbcon->query('SELECT * FROM blog WHERE id = ' . $id . ' OR alias = ' . $id);
+
+        //     return $data;
+
+        // } catch(PDOException $e) {
+        //     echo 'Ошибка: ' . $e->getMessage();
+        // }
     };
