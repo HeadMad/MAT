@@ -10,7 +10,7 @@ function route ($uri = null)
 	if (empty($uri)) {
 		$target = null;
 		require './modules/index/actions/index.php';
-		exit;
+		return;
 	}
 
 	list($module, $action, $target) = explode('/', $uri, 3) + ['index', 'index', null];
@@ -24,6 +24,6 @@ function route ($uri = null)
 		require './modules/index/actions/404.php';
 	}
 
-	exit;
+	return;
 
 } // end route

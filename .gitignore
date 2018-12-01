@@ -1,4 +1,4 @@
 .idea/
-app/composer/vendor/
-app/cache/
-node_modules/
+/app/composer/vendor/
+cache
+node_modules/*
