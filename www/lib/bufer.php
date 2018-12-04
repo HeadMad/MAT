@@ -14,12 +14,12 @@ function bufer ($path, $vars = null)
 	if (!is_file($tpl))
 		return null;
 
-	if (!empty($vars))
+	if (!empty($vars)) {
 		extract($vars);
+	}
 
 	ob_start();
 	require $tpl;
-
 	return ob_get_clean();
 
 } // end bufer
