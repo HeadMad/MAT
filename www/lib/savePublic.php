@@ -1,7 +1,7 @@
 <?php
-    function saveStatic ($path, $data) {
+    function savePublic ($path, $data) {
 
-            $static_file = $_SERVER['DOCUMENT_ROOT'] . '/static/' . ltrim($path, '/') ;
+            $static_file = $_SERVER['DOCUMENT_ROOT'] . '/public/' . ltrim($path, '/') ;
             $static_dir = dirname($static_file);
 
             if (!is_dir($static_dir)) {

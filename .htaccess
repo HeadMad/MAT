@@ -5,6 +5,12 @@ RewriteBase /
 RewriteCond %{DOCUMENT_ROOT}/public/$0 -f
 RewriteRule .+ public/$0 [L]
 
+# Убераем дубликаты с index и / на конце
+RewriteRule ^(.+)/$ $1 [L,R=301]
+RewriteRule ^([^/]+)/index$ $1 [L,R=301]
+RewriteRule ^index$ / [L,R=301]
+
 AddDefaultCharset UTF-8
 
+# Перенаправляем всех в единую точку входа
 RewriteRule .* www/index.php [L,QSA]

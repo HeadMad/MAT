@@ -1,5 +1,8 @@
 <?php
 	require './lib/bufer.php';
+	
+	// относительный путь
+	// chdir('./modules/' . $module);
 
 	// Массив с переменными используемыми в шаблоне
 	$vars = array(

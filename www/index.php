@@ -4,8 +4,6 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 require './lib/config.php';
-
-require './lib/error.php';
 require './lib/route.php';
 
 // Получаем URI-адрес
@@ -18,8 +16,8 @@ $uri = strstr($uri, '?', true) ?: $uri;
 $uri = trim($uri, '/');
 
 try {
-    route($uri);
-    
+    route($params);
+
 } catch (Exception $e) {
     echo 'Выброшено исключение: ',  $e->getMessage(), "\n";
 }
