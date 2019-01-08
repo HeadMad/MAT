@@ -1,9 +1,9 @@
 RewriteEngine On
 RewriteBase /
 
-# Проверяем, существует ли такой файл в папке static
-RewriteCond %{DOCUMENT_ROOT}/static/$0 -f
-RewriteRule .+ static/$0 [L]
+# Проверяем, существует ли такой файл в папке public
+RewriteCond %{DOCUMENT_ROOT}/public/$0 -f
+RewriteRule .+ public/$0 [L]
 
 AddDefaultCharset UTF-8
 

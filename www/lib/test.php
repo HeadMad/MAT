@@ -1,4 +1,4 @@
 <?php
-    return function ($ing, $ing2) {
-        echo  $ing . ' ' . $ing2;
-	};
+return function ($ing, $ing2) {
+    echo  $ing . ' ' . $ing2;
+};

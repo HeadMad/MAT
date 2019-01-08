@@ -5,11 +5,8 @@ ini_set('display_errors', 1);
 
 require './lib/config.php';
 
-// определяем тип роутера
-$route = (strpos($_SERVER['HTTP_HOST'], 'api.') !== 0) ? 'www' : 'api';
-
-require './lib/error.' . $route . '.php';
-require './lib/route.' . $route . '.php';
+require './lib/error.php';
+require './lib/route.php';
 
 // Получаем URI-адрес
 $uri = $_SERVER['REQUEST_URI'];
@@ -20,4 +17,9 @@ $uri = strstr($uri, '?', true) ?: $uri;
 // удаляем слеши в начале и в конце
 $uri = trim($uri, '/');
 
-route($uri);
+try {
+    route($uri);
+    
+} catch (Exception $e) {
+    echo 'Выброшено исключение: ',  $e->getMessage(), "\n";
+}
