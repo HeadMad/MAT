@@ -16,7 +16,7 @@ $uri = strstr($uri, '?', true) ?: $uri;
 $uri = trim($uri, '/');
 
 try {
-    route($params);
+    route($uri);
 
 } catch (Exception $e) {
     echo 'Выброшено исключение: ',  $e->getMessage(), "\n";

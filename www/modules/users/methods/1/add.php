@@ -30,7 +30,7 @@
             return [
                 'ok' => false,
                 'error_code' => 400,
-                'description' => $e->getMessage();
+                'description' => $e->getMessage()
             ];
         }
 
