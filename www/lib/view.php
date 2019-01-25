@@ -6,10 +6,10 @@
  * @param  array  [$vars] асоциативный массив переменных
  * @return string         *шаблон с подставленными переменными
  */
-function bufer ($path, $vars = null)
+function view (string $path, ?array $vars = null): ?string
 {
 	$path = explode('/', $path, 2);
-	$tpl = './modules/' . $path[0] . '/tpl/' . $path[1] . '.tpl';
+	$tpl = dirname(__DIR__) . '/modules/' . $path[0] . '/tpl/' . $path[1] . '.tpl';
 
 	if (!is_file($tpl))
 		return null;
@@ -22,4 +22,4 @@ function bufer ($path, $vars = null)
 	require $tpl;
 	return ob_get_clean();
 
-} // end bufer
+} // end view

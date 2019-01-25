@@ -1,19 +1,18 @@
 <?php
 
-require './lib/bufer.php';
+Lib::require('view');
 
 return function ($target) use ($module, $action) {
-
 	// относительный путь
-	// chdir('./modules/' . $module);
+	chdir('./modules/' . $module);
 
 	// Массив с переменными используемыми в шаблоне
 	$vars = array(
 		'lang' => $_REQUEST['lang'] ?? 'ru',
 		'title' => 'Главная страница',
-		'content' => bufer('index/content/index')
+		'content' => view('index/content/index')
 	);
 
 	// Выводим код главной страницы
-	echo bufer('index/layout', $vars);
+	return view('index/layout', $vars);
 };

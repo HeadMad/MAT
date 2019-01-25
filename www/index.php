@@ -3,20 +3,18 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require './lib/config.php';
-require './lib/route.php';
+require './lib/Lib.php';
 
-// Получаем URI-адрес
+Lib::require('route');
+Lib::require('config');
+
+// Приводим uri-адрес к нужному виду
 $uri = $_SERVER['REQUEST_URI'];
-
-// Удаляем GET-параметры
 $uri = strstr($uri, '?', true) ?: $uri;
-
-// удаляем слеши в начале и в конце
 $uri = trim($uri, '/');
 
 try {
-    route($uri);
+    echo route($uri);
 
 } catch (Exception $e) {
     echo 'Выброшено исключение: ',  $e->getMessage(), "\n";

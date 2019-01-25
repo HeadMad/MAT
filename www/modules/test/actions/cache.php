@@ -1,19 +1,21 @@
 <?php
 
-require './lib/bufer.php';
-require './lib/cache.php';
+Lib::require('view');
+Lib::require('cache');
 
 return function ($target) use ($module, $action) {
-	$menu = require './modules/test/data/menu.php';
+	// относительный путь
+	chdir('./modules/' . $module);
+	$menu = require './data/menu.php';
 	
-	$cache_dir = 'modules/test/cache';
+	$cache_dir = '/cache';
 	
 	// переменные для шаблона
 	$vars = [
 		'title'   => 'Тест: кеширование данных',
-		'menu'    => cache('bufer', $cache_dir)('test/menu', $menu),
-		'content' => cache('bufer', $cache_dir)('test/content/cache'),
+		'menu'    => cache('view', $cache_dir)('test/menu', $menu),
+		'content' => cache('view', $cache_dir)('test/content/cache'),
 	];
 	
-	echo bufer('test/layout', $vars);
+	return view('test/layout', $vars);
 };

@@ -1,6 +1,6 @@
 <?php
 
-require './lib/bufer.php';
+Lib::require('view');
 
 return function ($target) use ($module, $action) {
 	require './lib/saveStatic.php';
@@ -9,12 +9,12 @@ return function ($target) use ($module, $action) {
 
 	$vars = [
 		'title'   => 'Тест: сохранение статической страницы',
-		'menu'    => bufer('test/menu', $menu),
-		'content' => bufer('test/content/static'),
+		'menu'    => view('test/menu', $menu),
+		'content' => view('test/content/static'),
 	];
 	
 	// Выводим код главной страницы
-	$layout = bufer('test/layout', $vars);
+	$layout = view('test/layout', $vars);
 	saveStatic('test/static', $layout);
-	echo $layout;
+	return $layout;
 };

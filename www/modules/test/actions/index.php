@@ -1,16 +1,16 @@
 <?php
 
-require './lib/bufer.php';
+Lib::require('view');
 
 return function ($target) use ($module, $action) {
 	$menu = require './modules/test/data/menu.php';
 
 	$vars = [
 		'title'   => 'Тесты',
-		'menu'    => bufer('test/menu', $menu),
+		'menu'    => view('test/menu', $menu),
 	];
 
 	// Выводим код главной страницы
-	echo bufer('test/layout', $vars);
+	return view('test/layout', $vars);
 
 };

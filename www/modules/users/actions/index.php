@@ -1,6 +1,6 @@
 <?php
 
-require './lib/bufer.php';
+Lib::require('view');
 
 return function ($target) use ($module, $action) {
 
