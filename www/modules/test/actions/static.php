@@ -1,11 +1,11 @@
 <?php
 
 Lib::require('view');
+Lib::require('saveStatic');
 
 return function ($target) use ($module, $action) {
-	require './lib/saveStatic.php';
-	
-	$menu = require './modules/test/data/menu.php';
+	chdir('./modules/' . $module);
+	$menu = require './data/menu.php';
 
 	$vars = [
 		'title'   => 'Тест: сохранение статической страницы',

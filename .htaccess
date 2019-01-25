@@ -1,13 +1,13 @@
 RewriteEngine On
 RewriteBase /
 
-# Проверяем, существует ли такой файл в папке public
-RewriteCond %{DOCUMENT_ROOT}/public/$0 -f
-RewriteRule .+ public/$0 [L]
+# Проверяем, существует ли такой файл в папке static
+RewriteCond %{DOCUMENT_ROOT}/static/$0 -f
+RewriteRule .+ static/$0 [L]
 
 # Убераем дубликаты с index и / на конце
 RewriteRule ^(.+)/$ $1 [L,R=301]
-RewriteRule ^([^/]+)/index$ $1 [L,R=301]
+RewriteRule ^([^/]+)/(main|index)$ $1 [L,R=301]
 RewriteRule ^index$ / [L,R=301]
 
 AddDefaultCharset UTF-8

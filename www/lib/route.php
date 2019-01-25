@@ -5,7 +5,7 @@
  * 
  * @param  string $uri uri-адрес
  */
-function route(string $uri, array $default = ['index', 'index', null]): ?string
+function route(string $uri, array $default = ['index', 'main', null]): ?string
 {
 	if ($uri === '') {
 		list($module, $action, $target) = $default;
@@ -14,13 +14,17 @@ function route(string $uri, array $default = ['index', 'index', null]): ?string
 		list($module, $action, $target) = explode('/', $uri, 3) + $default;
 	}
 
-	$actionFile = './modules/' . $module . '/actions/' . $action . '.php';
+	$action_path = './modules/' . $module . '/actions/';
+	$action_file = $action_path  . $action . '.php';
 
-	if (is_file($actionFile)) {
-		return (require $actionFile)($target);
+	if (is_file($action_file)) {
+		return (require $action_file)($target);
+
+	} elseif (is_dir($action_path)) {
+		return (require $action_path . 'index.php')($target);
 
 	} else {
-		return require './modules/index/actions/404.php';
+		return route('index/404');
 	}
 
 	return '';

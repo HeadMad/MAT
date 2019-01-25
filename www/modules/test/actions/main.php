@@ -3,7 +3,8 @@
 Lib::require('view');
 
 return function ($target) use ($module, $action) {
-	$menu = require './modules/test/data/menu.php';
+	chdir('./modules/' . $module);
+	$menu = require './data/menu.php';
 
 	$vars = [
 		'title'   => 'Тесты',
