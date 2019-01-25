@@ -8,5 +8,6 @@
 </head>
 <body>
     <h1>Page Not Found</h1>
+    <p>Страницы с адресом <b><?=$uri?></b> - не существует!</p>
 </body>
 </html>

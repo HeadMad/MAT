@@ -24,7 +24,7 @@ function route(string $uri, array $default = ['index', 'main', null]): ?string
 		return (require $action_path . 'index.php')($target);
 
 	} else {
-		return route('index/404');
+		return (require './modules/index/actions/404.php')();
 	}
 
 	return '';
