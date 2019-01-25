@@ -2,26 +2,27 @@
 
 /**
  * Основной роутинг
+ * 
  * @param  string $uri uri-адрес
  */
-function route ($uri)
+function route(string $uri, array $default = ['index', 'index', null]): ?string
 {
 	if ($uri === '') {
-		list($module, $action, $target) = ['index', 'index', null];
+		list($module, $action, $target) = $default;
 		
 	} else {
-		list($module, $action, $target) = explode('/', $uri, 3) + ['index', 'index', null];
+		list($module, $action, $target) = explode('/', $uri, 3) + $default;
 	}
 
-	$action_file = './modules/' . $module . '/actions/' . $action . '.php';
+	$actionFile = './modules/' . $module . '/actions/' . $action . '.php';
 
-	if (is_file($action_file)) {
-			require $action_file;
+	if (is_file($actionFile)) {
+		return (require $actionFile)($target);
 
 	} else {
-		require './modules/index/actions/404.php';
+		return require './modules/index/actions/404.php';
 	}
 
-	return;
+	return '';
 
 } // end route

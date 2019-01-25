@@ -1,7 +1,9 @@
 <?php
-	require './lib/bufer.php';
 
-    $menu = require './modules/test/data/menu.php';
+require './lib/bufer.php';
+
+return function ($target) use ($module, $action) {
+	$menu = require './modules/test/data/menu.php';
 
 	$vars = [
 		'title'   => 'Тесты',
@@ -10,3 +12,5 @@
 
 	// Выводим код главной страницы
 	echo bufer('test/layout', $vars);
+
+};
