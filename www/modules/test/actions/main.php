@@ -1,6 +1,6 @@
 <?php
 
-Lib::require('view');
+Load::lib('view');
 
 return function ($target) use ($module, $action) {
 	chdir('./modules/' . $module);

@@ -1,6 +1,6 @@
 <?php
 
-Lib::require('view');
+Load::lib('view');
 
 return function () use ($uri) {
 	// Выводим код главной страницы

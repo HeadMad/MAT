@@ -3,11 +3,15 @@
 Load::lib('view');
 
 return function ($target) use ($module, $action) {
+	// относительный путь
+    chdir('./modules/' . $module);
+
+    $config = REQUIRE './config/config.php';
+
 	// Массив с переменными используемыми в шаблоне
 	$vars = array(
-		'lang' => $_REQUEST['lang'] ?? 'ru',
-		'title' => 'Что-то пошло не так',
-		'content' => view('index/content/index', ['text' => "module: $module<br>action: $action<br>target: $target"])
+		'title' => $config['module_name'] . ' - Главная страница',
+		'content' => view('index/content/posts')
 	);
 
 	// Выводим код главной страницы

@@ -1,7 +1,7 @@
 <?php
 
-Lib::require('view');
-Lib::require('saveStatic');
+Load::lib('view');
+Load::lib('saveStatic');
 
 return function ($target) use ($module, $action) {
 	chdir('./modules/' . $module);

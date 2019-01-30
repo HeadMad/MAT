@@ -1,7 +1,7 @@
 <?php
 
-Lib::require('view');
-Lib::require('cache');
+Load::lib('view');
+Load::lib('cache');
 
 return function ($target) use ($module, $action) {
 	// относительный путь
