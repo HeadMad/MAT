@@ -23,3 +23,14 @@ function route(string $module, string $action, ?string $target = null): ?string
 	return '';
 
 } // end route
+
+function config ($param) {
+    $config = [
+        'startPage' => ['index', 'index', null],
+        'dbName' => 'matcc',
+        'dbUser' => 'root',
+        'dbPassword' => '',
+        'dbHost' => 'localhost',
+    ];
+    return $config[$param] ?? null;
+}
