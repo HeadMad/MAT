@@ -1,8 +1,6 @@
 <?php
 
-Load::lib('view');
-
-return function ($target) use ($module, $action) {
+return function ($target) {
 	$vars = array(
 		'lang' => $_REQUEST['lang'] ?? 'ru',
 		'title' => 'Главная страница',

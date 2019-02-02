@@ -1,6 +1,5 @@
 <?php
 
-Load::lib('view');
 Load::lib('saveStatic');
 
 return function ($target) use ($module, $action) {

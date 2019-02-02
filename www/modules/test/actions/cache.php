@@ -1,6 +1,5 @@
 <?php
 
-Load::lib('view');
 Load::lib('cache');
 
 return function ($target) use ($module, $action) {

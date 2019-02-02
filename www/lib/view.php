@@ -2,14 +2,15 @@
 
 /**
  * Простой шаблонизатор
- * @param  string $path   указание шаблона вида module/template
+ * 
+ * @param  string $tpl   указание шаблона вида module/template
  * @param  array  [$vars] асоциативный массив переменных
+ * 
  * @return string         *шаблон с подставленными переменными
  */
-function view (string $path, ?array $vars = null): ?string
+function view (string $tpl, ?array $vars = null): ?string
 {
-	$path = explode('/', $path, 2);
-	$tpl = dirname(__DIR__) . '/modules/' . $path[0] . '/tpl/' . $path[1] . '.tpl';
+	$tpl = dirname(__DIR__) . '/modules/' . strstr($tpl, '/', true) . '/tpl' . strstr($tpl, '/') . '.tpl';
 
 	if (!is_file($tpl))
 		return null;

@@ -6,7 +6,7 @@
 */
 class Validator
 {
-	public $error = [];
+	public $errors = [];
 	public $data = [];
 	public $alarm = [];
 

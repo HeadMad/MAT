@@ -1,7 +1,5 @@
 <?php
 
-Load::lib('view');
-
 return function ($target) use ($module, $action) {
 	chdir('./modules/' . $module);
 	$menu = require './data/menu.php';

@@ -1,19 +1,21 @@
 <?php
 
-Load::lib('view');
-
 return function ($target) use ($module, $action) {
-	// относительный путь
-    chdir('./modules/' . $module);
 
-    $config = REQUIRE './config/config.php';
 
-	// Массив с переменными используемыми в шаблоне
+	Load::register('blog', dirname(__DIR__));
+    $config = Load::blog('config/config');
+    $getPosts = Load::blog('methods/getPosts');
+
 	$vars = array(
 		'title' => $config['module_name'] . ' - Главная страница',
-		'content' => view('index/content/posts')
+		'menu' => view('blog/content/menu'),
 	);
 
+    if ($posts = $getPosts()) {
+	    $vars['content'] = view('blog/content/posts', ['posts' => $posts]);
+    }
+
 	// Выводим код главной страницы
-	return view('index/layout', $vars);
+	return view('blog/layout', $vars);
 };

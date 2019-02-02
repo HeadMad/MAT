@@ -1,9 +1,13 @@
 <?php
 
 /**
- * Основной роутинг
+ * Роутер
  * 
- * @param  string $uri uri-адрес
+ * @param  string      $module Имя модуля
+ * @param  string      $action Экшен модуля
+ * @param  string|null $target Уточняющие данные
+ * 
+ * @return string              Результат работы соответствующих экшенов
  */
 function route(string $module, string $action, ?string $target = null): ?string
 {
@@ -21,5 +25,4 @@ function route(string $module, string $action, ?string $target = null): ?string
 	}
 
 	return '';
-
-} // end route
+}

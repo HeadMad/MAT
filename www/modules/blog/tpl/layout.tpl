@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="//mat.cc/css/style.css">
 </head>
 <body>
+	<?= $menu ?? '' ?>
+	<br>
+	<br>
+	<br>
     <?= $content ?? '' ?>
 </body>
 </html>

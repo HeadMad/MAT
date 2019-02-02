@@ -13,4 +13,4 @@ RewriteRule ^index$ / [L,R=301]
 AddDefaultCharset UTF-8
 
 # Перенаправляем всех в единую точку входа
-RewriteRule .* www/index.php [L,QSA]
+RewriteRule ^(.*)$ www/index.php?uri=$1 [L,QSA]

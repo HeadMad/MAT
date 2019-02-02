@@ -9,14 +9,9 @@ Load::register('lib', __DIR__ . '/lib');
 
 Load::lib('route');
 Load::lib('config');
+Load::lib('view');
 
-
-// Приводим uri-адрес к нужному виду
-$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
-
-$route_args = ($uri === '/')
-	? ['index', 'main', null]
-	: explode('/', trim($uri, '/'), 3) + ['index', 'main', null];
+$route_args = ($_GET['uri'] !== '') ? explode('/', $_GET['uri'], 3) + ['index', 'main', null] : ['index', 'main', null];
 
 try {
     echo route(...$route_args);

@@ -1,12 +1,7 @@
 <?php
 
-Load::lib('view');
-
 return function ($target) use ($module, $action) {
-	// относительный путь
-    chdir('./modules/' . $module);
-
-    $config = require './config/config.php';
+    $config = Load::blog('config/config');
 
     $form_vars = [
         'data' => null,
@@ -15,15 +10,22 @@ return function ($target) use ($module, $action) {
     ];
 
     if (! empty($_POST)) {
-        require './lib/Validator.php';
-        $fields = require './config/add.php';
+        Load::register('blog', dirname(__DIR__));
+        Load::blog('lib/Validator');
+        $fields = Load::blog('config/add');
+        $addPost = Load::blog('methods/addPost');
 
         $valid = new Validator($_POST, $fields);
-        
         $valid->run();
 
+        unset($_POST['add']);
+        // если ошибок при валидации не возникло
+        if ($addPost($_POST)) {
+            header('Location: /blog');
+        }
+
+        $form_vars['error'] = $valid->errors;
         $form_vars['data'] = $valid->data;
-        $form_vars['error'] = $valid->error;
         $form_vars['alarm'] = $valid->alarm;
     }
 
